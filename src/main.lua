@@ -31,6 +31,6 @@ while true do
     if Command then
         ParseFlags(Arguments, Input)
 
-        Command.run(Arguments)
+        Command.run(Arguments, CommandMap)
     end
 end

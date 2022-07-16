@@ -13,6 +13,7 @@ return {
     dependencies = {
 
         "creationix/prompt",
+        "creationix/coro-spawn",
 
     },
 
