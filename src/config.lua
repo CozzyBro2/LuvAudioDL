@@ -1,5 +1,3 @@
-
-
 return {
 
     welcome_format = "\27[1;37m%s\27[0m",
