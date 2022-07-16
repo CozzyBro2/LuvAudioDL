@@ -1,17 +1,19 @@
 local Module = {}
 
---local Printer = require("pretty-print")
 local Config = require("src/config")
 
 function Module.run(_, Map)
     local Concat = {}
 
     for Name in pairs(Map) do
+        local CommandTip = Config[string.format(Config.help_command_prefix, Name)]
+
         table.insert(Concat, string.format(
 
             Config.help_command_format,
+
             Name,
-            Config[string.format(Config.help_command_prefix, Name)]
+            CommandTip
 
         ))
     end

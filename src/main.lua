@@ -1,6 +1,6 @@
 local Prompt = require("prompt") {}
 
-local CommandMap = require("./commands/init").Map
+local CommandMap = require("./commands/mapper").Map
 local Config = require("./config")
 
 local function GetInput()
@@ -16,15 +16,19 @@ local function GetInput()
             Command = CommandModule
         end
 
-        Arguments[Argument] = true
+        table.insert(Arguments, Argument)
     end
 
     if Command then
-        Command.run(Arguments, CommandMap)
+        local state, err = pcall(Command.run, Arguments, CommandMap)
+
+        if not state then
+            print(string.format(Config.error_format, string.format("[ERROR] Command failed with error: \n%s", err)))
+        end
     end
 end
 
-print(string.format(Config.welcome_format, Config.welcome_message))
+print(string.format(Config.bold_format, Config.welcome_message))
 
 while true do
     GetInput()

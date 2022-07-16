@@ -1,4 +1,4 @@
-# LuvMusicDL
+# LuvAudioDL
 
 Youtube DL audio player written in Luvit 
 
