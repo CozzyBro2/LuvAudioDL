@@ -1,5 +1,4 @@
 local Prompt = require("prompt") {}
-local Printer = require("pretty-print")
 
 local CommandMap = require("./commands/init").Map
 local Config = require("./config")
@@ -10,7 +9,7 @@ local function ParseFlags(Arguments, Input)
     end
 end
 
-Printer.print(Config.welcome_message)
+print(string.format(Config.welcome_format, Config.welcome_message))
 
 while true do
     local Arguments = {}
