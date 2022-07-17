@@ -22,16 +22,18 @@ function Module.run(Arguments)
 
             "-e",
             "-x",
-            "-q",
+            "--quiet",
+            "--audio-quality=0",
 
+            --"--verbose",
             "--no-simulate",
-            "--verbose",
             "--restrict-filenames",
 
             Query,
 
         },
 
+        cwd = Config.audio_working_directory,
         stdio = {nil, true, true},
     })
 

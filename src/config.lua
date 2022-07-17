@@ -32,12 +32,14 @@ return {
     -- %s = audio file
     -- to achieve something like: `vlc -e %s` you can just append "-e", to this array.
 
-    audio_arguments = {
+    backend_arguments = {
 
         "--play-and-exit",
         "%s",
 
-    }
+    },
+
+    audio_working_directory = "./audio",
 
     
 }
