@@ -6,7 +6,7 @@ local function getArguments(Input)
     local Arguments = {}
 
     if type(Input) == 'string' then
-        for _, Argument in Input:gmatch(Config._command_gmatch) do
+        for Argument in Input:gmatch(Config._command_gmatch) do
             table.insert(Arguments, Argument)
         end
     elseif type(Input) == 'table' then

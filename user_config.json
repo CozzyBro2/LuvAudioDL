@@ -1,6 +1,13 @@
 {
 
     "_welcome_message": "Welcome to LuvAudioDL, type 'help' to get help.",
+    "_goodbye_message": "See ya",
+
+    "_command_invalid_format": "Command name %s invalid",
+
+    "_error_format": "[ERROR] Command failed with error: \n%s",
+    "_warn_format": "[WARNING] %s",
+
     "_prompt_message": "",
 
     "_command_gmatch": "%S+",
