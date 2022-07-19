@@ -33,10 +33,6 @@
 
     },
 
-    "_help_format": "%s\n%s",
-
-    "playlists": [
-
-    ]
+    "_help_format": "%s\n%s"
 
 }
