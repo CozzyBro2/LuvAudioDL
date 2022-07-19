@@ -1,26 +1,17 @@
-return {
-
-    name = "hashcollision/test",
-    version = "0.0.0",
+  return {
+    name = "LuvAudioDL",
+    version = "0.0.1",
+    description = "Youtube DL audio player written in Luvit",
+    tags = { "lua", "lit", "luvit", "youtube-dl", "yt-dlp", "music", "audio", "audio-player" },
     license = "Unlicense",
-
-    description = "",
-    tags = { "lua", "discord" },
-
-    author = { name = "Gavin", email = "gojinhan2@gmail.com" },
-    homepage = "",
-
+    author = { name = "CozzyBro2", email = "gojinhan2@gmail.com" },
+    homepage = "https://github.com/LuvAudioDL",
     dependencies = {
-
-        "creationix/prompt",
-        "creationix/coro-spawn",
-
+      "creationix/prompt",
+      "creationix/coro-spawn",
     },
-
     files = {
-
-        "**.lua",
-
-    },
-
-}
+      "**.lua",
+      "!test*"
+    }
+  }

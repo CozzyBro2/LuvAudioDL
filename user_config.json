@@ -1,0 +1,21 @@
+{
+
+    "welcome_message": "Welcome to LuvAudioDL, type 'help' to get help.",
+    "prompt_message": "",
+
+    "commands_map": {
+
+        "q": "exit",
+        "quit": "exit",
+        "exit": "exit",
+
+        "help": "help",
+        "h": "help"
+
+    },
+
+    "playlists": [
+
+    ]
+
+}
