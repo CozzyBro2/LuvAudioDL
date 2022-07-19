@@ -1,7 +1,14 @@
 {
 
-    "welcome_message": "Welcome to LuvAudioDL, type 'help' to get help.",
-    "prompt_message": "",
+    "_welcome_message": "Welcome to LuvAudioDL, type 'help' to get help.",
+    "_prompt_message": "",
+
+    "_command_gmatch": "%S+",
+
+    "_flag_symbol": "-",
+    "_option_symbol": "--",
+
+    "_unfufilled_option": "Option %s specified, but no value was given.",
 
     "commands_map": {
 
