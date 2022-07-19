@@ -4,7 +4,8 @@ local Config = require('config')
 
 local Commands = {
 
-    exit = require('./exit')
+    exit = require('./exit'),
+    help = require('./help'),
 
 }
 
@@ -12,7 +13,7 @@ function Module.run(Arguments, Flags)
     local Name = Arguments[1]
 
     if Name then
-        local RealName = Config.commands_map[Name]
+        local RealName = Config._commands_map[Name]
 
         if RealName then
             local Command = Commands[RealName]

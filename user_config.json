@@ -15,7 +15,7 @@
     "_flag_symbol": "-",
     "_option_symbol": "--",
 
-    "commands_map": {
+    "_commands_map": {
 
         "q": "exit",
         "quit": "exit",
@@ -25,6 +25,15 @@
         "h": "help"
 
     },
+
+    "_help_map": {
+
+        "exit": "exits the prompt, if you're in one. \n\n    --silent: no goodbye message :c \n",
+        "help": "shows this command"
+
+    },
+
+    "_help_format": "%s\n%s",
 
     "playlists": [
 
