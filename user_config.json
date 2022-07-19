@@ -8,8 +8,6 @@
     "_flag_symbol": "-",
     "_option_symbol": "--",
 
-    "_unfufilled_option": "Option %s specified, but no value was given.",
-
     "commands_map": {
 
         "q": "exit",

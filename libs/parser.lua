@@ -21,7 +21,11 @@ end
 
 function Module.parseCommand(Input)
     local Arguments = getArguments(Input)
+
+    local NewArgs = {}
     local Flags = {}
+
+    local Blacklist = {}
 
     for Index, Flag in ipairs(Arguments) do
         local IsFlag = Flag:sub(1, 1) == Config._flag_symbol
@@ -31,20 +35,25 @@ function Module.parseCommand(Input)
             local Value = true
 
             if IsOption then
-                local _, Argument = next(Arguments, Index)
+                local ArgumentIndex, Argument = next(Arguments, Index)
 
                 if Argument then
+                    Blacklist[ArgumentIndex] = true
+
                     Value = Argument
-                else
-                    error(Config._unfufilled_option:format(Flag))
                 end
             end
 
+            Blacklist[Index] = true
             Flags[Flag] = Value
+        end
+
+        if not Blacklist[Index] then
+            table.insert(NewArgs, Flag)
         end
     end
 
-    return Arguments, Flags
+    return NewArgs, Flags
 end
 
 return Module
