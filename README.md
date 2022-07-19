@@ -7,6 +7,7 @@ I am not responsible for anything ever
 # Usage
 
 This can be ran via either an interactive prompt, aka: `luvaudiodl`
+
 Or by using it like a standard CLI program, aka: `luvaudiodl help`
 
 # Installation
