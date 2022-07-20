@@ -35,7 +35,7 @@ function Module.write()
 
     local NewText = Json.encode(Data)
 
-    local Success, Err = Fs.writeFileSync('audio_config.json', NewText)
+    local Success, Err = Fs.writeFileSync(config_path, NewText)
     assert(Success, file_error:format('write', Err))
 
     print('(wrote changes to audio config)')
