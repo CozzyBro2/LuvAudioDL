@@ -4,6 +4,19 @@ local SubCommands = {}
 local Config = require('config')
 local AudioConfig = require('audioConfig')
 
+local Playlists = AudioConfig.playlists
+
+local playlist_feedback = 'Making a playlist named "%s"'
+local playlist_already_exists = 'Playlist named "%s" already exists, not creating'
+
+local function MakePlaylist()
+    return {
+
+        audios = {},
+
+    }
+end
+
 function Module.run(Arguments, Flags)
     local SubName = Arguments[2]
     local Sub = SubCommands[SubName]
@@ -16,9 +29,16 @@ function Module.run(Arguments, Flags)
 end
 
 function SubCommands.create(Arguments, Flags)
-    table.insert(AudioConfig.playlists, {test = true})
-    -- ^ do playlist stuff here
+    local PlaylistName = Arguments[2]
+    print(playlist_feedback:format(PlaylistName))
 
+    if Playlists[PlaylistName] then
+        print(Config.warnify(playlist_already_exists:format(PlaylistName)))
+
+        return
+    end
+
+    Playlists[PlaylistName] = MakePlaylist()
     AudioConfig.write()
 end
 

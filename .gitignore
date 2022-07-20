@@ -44,6 +44,5 @@ luac.out
 deps/
 audio/
 
-# Discordia files
-gateway.json
-discordia.log
+# LuvAudioDL files
+audio_config.json
