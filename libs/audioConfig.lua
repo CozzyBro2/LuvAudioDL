@@ -1,26 +1,30 @@
+local Config = require('config')
+
 local Json = require('json')
 local Fs = require('fs')
 
-local config_name = 'audio_config.json'
-local default_config_name = 'defaults/default_audio_config.json'
+local config_path = Config.config_path
+local default_config_path = Config.default_config_path
 
-local cant_read = [[Can't read %s file, error: %s]]
+local file_error = Config._file_error
 
-local Exists = Fs.existsSync(config_name)
+local Exists = Fs.existsSync(config_path)
 local Text
 
 if not Exists then
-    local Backup, Err = Fs.readFileSync(default_config_name)
-    assert(not Err, cant_read:format(default_config_name, Err))
+    local Backup, Err = Fs.readFileSync(default_config_path)
+    assert(not Err, file_error:format('read', Err))
 
-    Fs.writeFileSync(config_name, Backup)
-    Config = Backup
+    local Success, Err = Fs.writeFileSync(config_path, Backup)
+    assert(Success, file_error:format('write', Err))
+
+    Text = Backup
 end
 
 if not Text then
-    Text, Err = Fs.readFileSync(config_name)
+    Text, Err = Fs.readFileSync(config_path)
 
-    assert(Text, cant_read:format(config_name, Err))
+    assert(Text, file_error:format('read', Err))
 end
 
 local Data = Json.decode(Text)
@@ -31,7 +35,8 @@ function Module.write()
 
     local NewText = Json.encode(Data)
 
-    Fs.writeFileSync(config_name, NewText)
+    local Success, Err = Fs.writeFileSync('audio_config.json', NewText)
+    assert(Success, file_error:format('write', Err))
 
     print('(wrote changes to audio config)')
 end
