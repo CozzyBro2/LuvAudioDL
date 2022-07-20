@@ -5,7 +5,6 @@ local Fs = require('fs')
 
 local config_path = Config.config_path
 local default_config_path = Config.default_config_path
-
 local file_error = Config._file_error
 
 local Exists = Fs.existsSync(config_path)

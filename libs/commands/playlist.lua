@@ -78,7 +78,15 @@ function SubCommands.list(Arguments, Flags)
     local Concat = {}
 
     for PlaylistName, Contents in pairs(Playlists) do
-        table.insert(Concat, PlaylistName)
+        table.insert(Concat, Config.boldify(PlaylistName))
+
+        local AudioConcat = {}
+
+        for _, Audio in ipairs(Contents.audios) do
+            table.insert(AudioConcat, '    ' .. Audio.name)
+        end
+
+        table.insert(Concat, table.concat(AudioConcat, '\n'))
     end
 
     print(table.concat(Concat, '\n'))

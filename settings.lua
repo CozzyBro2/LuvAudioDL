@@ -7,9 +7,9 @@ Config = {
     config_path = 'audio_config.json',
     default_config_path = 'defaults/default_audio_config.json',
 
-    error_color = "\27[1;31m%s\27[0m",
-    warn_color = "\27[1;33m%s\27[0m",
-    bold_color = "\27[1;37m%s\27[0m",
+    error_color = '\27[1;31m%s\27[0m',
+    warn_color = '\27[1;33m%s\27[0m',
+    bold_color = '\27[1;37m%s\27[0m',
 
     _welcome_message = [[Welcome to LuvAudioDL, type 'help' to get help.]],
     _goodbye_message = [[See ya]],
@@ -21,24 +21,29 @@ Config = {
     _error_format = "[ERROR] Command failed with error: \n%s",
     _warn_format = "[WARNING] %s",
 
-    _prompt_message = "",
+    _prompt_message = '',
 
-    _command_gmatch = "%S+",
+    _command_gmatch = '%S+',
 
-    _flag_symbol = "-",
-    _option_symbol = "--",
+    _flag_symbol = '-',
+    _option_symbol = '--',
 
     _commands_map = {
 
-        q = "exit",
-        quit = "exit",
-        exit = "exit",
+        q = 'exit',
+        quit = 'exit',
+        exit = 'exit',
 
-        help = "help",
-        h = "help",
+        help = 'help',
+        h = 'help',
 
-        playlist = "playlist",
-        lists = "playlist"
+        playlist = 'playlist',
+        lists = 'playlist',
+
+        song = 'audio',
+        music = 'audio',
+        sound = 'audio',
+        audio = 'audo',
 
     },
 
@@ -47,21 +52,49 @@ Config = {
         exit = [[Exits the prompt, if you're in one.
         
         --silent: no goodbye message :c
+
         ]],
 
         help = [[Shows this command.]],
         playlist = [[Manages your playlists. 
         
-        make:
-                Makes playlists. 
+        make <NAME> :
+
+                Makes a new playlist with a name. 
                 
                 --force: ignores things like duplication checks and writes anyway. 
                             
-        remove:
-                Removes playlists.
+        remove <NAME> :
+
+                Removes a playlist by name
+
+        list :
+
+                Lists all your playlists.
+
+        ]],
+
+        audio = [[Manages your audio. 
+        
+        add <URL/SEARCH_QUERY> <PLAYLIST_NAME> :
+    
+                Downloads audio and adds it to a playlist. 
+                This can be fetched either through a URL, or a search query.
+
+                --force: ignores things like playlist existing checks and makes one if needed, etc. 
+                            
+        remove <NAME> <PLAYLIST_NAME> :
+
+                Removes audio from a playlist by name.
+    
+                <NAME> can be roughly accurate, 
+                i.e using "travysicko" will fuzzy to "travis scott - sicko mode", even if you had other travis songs.  
+
         list:
+
                 Lists your playlists
-        ]]
+
+        ]],
     },
 
     _help_format = "%s\n%s"

@@ -7,6 +7,7 @@ local Commands = {
     exit = require('./exit'),
     help = require('./help'),
     playlist = require("./playlist"),
+    audio = require("./audio")
 
 }
 
