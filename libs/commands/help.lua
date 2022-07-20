@@ -7,9 +7,9 @@ function Module.run()
 
     local Concat = {}
 
-    for CommandName, Message in pairs(Config._help_map) do
-        local FormattedName = Config.boldify(CommandName)
-        local Segment = Config._help_format:format(FormattedName, Message)
+    for _, Command in ipairs(Config._help_map) do
+        local FormattedName = Config.boldify(Command.name)
+        local Segment = Config._help_format:format(FormattedName, Command.tip)
 
         table.insert(Concat, Segment)
     end

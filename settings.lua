@@ -49,14 +49,14 @@ Config = {
 
     _help_map = {
 
-        exit = [[Exits the prompt, if you're in one.
+        {name = 'help', tip = [[Shows this command.]]},
+        {name = 'exit', tip = [[Exits the prompt, if you're in one.
         
         --silent: no goodbye message :c
 
-        ]],
+        ]]},
 
-        help = [[Shows this command.]],
-        playlist = [[Manages your playlists. 
+        {name = 'playlist', tip = [[Manages your playlists. 
         
         make <NAME> :
 
@@ -72,9 +72,9 @@ Config = {
 
                 Lists all your playlists.
 
-        ]],
+        ]]},
 
-        audio = [[Manages your audio. 
+        {name = 'audio', tip = [[Manages your audio. 
         
         add <URL/SEARCH_QUERY> <PLAYLIST_NAME> :
     
@@ -94,7 +94,8 @@ Config = {
 
                 Lists your playlists
 
-        ]],
+        ]]},
+
     },
 
     _help_format = "%s\n%s"
