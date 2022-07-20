@@ -11,20 +11,28 @@ local file_error = Config._file_error
 local Exists = Fs.existsSync(config_path)
 local Text
 
-if not Exists then
-    local Backup, Err = Fs.readFileSync(default_config_path)
+local function safeRead(Path)
+    local Result, Err = Fs.readFileSync(Path)
     assert(not Err, file_error:format('read', Err))
 
-    local Success, Err = Fs.writeFileSync(config_path, Backup)
-    assert(Success, file_error:format('write', Err))
+    return Result
+end
 
+local function safeWrite(Path, ToWrite)
+    local Success, Err = Fs.writeFileSync(Path, ToWrite)
+
+    assert(Success, file_error:format('write', Err))
+end
+
+if not Exists then
+    local Backup = safeRead(default_config_path)
+
+    safeWrite(config_path, Backup)
     Text = Backup
 end
 
 if not Text then
-    Text, Err = Fs.readFileSync(config_path)
-
-    assert(Text, file_error:format('read', Err))
+    Text = safeRead(config_path)
 end
 
 local Data = Json.decode(Text)
@@ -34,9 +42,7 @@ function Module.write()
     print('(writing changes to audio config)')
 
     local NewText = Json.encode(Data)
-
-    local Success, Err = Fs.writeFileSync(config_path, NewText)
-    assert(Success, file_error:format('write', Err))
+    safeWrite(config_path, NewText)
 
     print('(wrote changes to audio config)')
 end

@@ -81,7 +81,7 @@ function SubCommands.list(Arguments, Flags)
         table.insert(Concat, PlaylistName)
     end
 
-    print(table.concat(Concat, '\n%s\n'))
+    print(table.concat(Concat, '\n'))
 end
 
 SubCommands.make = SubCommands.create
