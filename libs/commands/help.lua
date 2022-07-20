@@ -15,7 +15,6 @@ function Module.run()
     end
 
     print(table.concat(Concat, '\n\n'))
-    print([[Command aliases/shorthands are listed in 'user_config.json']])
 end
 
 return Module
