@@ -7,8 +7,8 @@
     author = { name = "CozzyBro2", email = "gojinhan2@gmail.com" },
     homepage = "https://github.com/LuvAudioDL",
     dependencies = {
-      "creationix/prompt",
-      "creationix/coro-spawn",
+      "creationix/prompt@2.0.1",
+      "creationix/coro-spawn@3.0.2",
     },
     files = {
       "**.lua",

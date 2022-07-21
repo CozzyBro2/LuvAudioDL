@@ -1,3 +1,5 @@
+require('helpful')('string')
+
 local Prompt = require('prompt') {}
 
 local Commands = require('commands/init.lua')

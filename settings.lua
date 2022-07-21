@@ -6,6 +6,29 @@ Config = {
 
     config_path = 'audio_config.json',
     default_config_path = 'defaults/default_audio_config.json',
+    audio_storage_path = 'audio',
+
+    -- yt-dlp can support a few of these, visit it's docs for a list
+    default_searcher = 'ytsearch',
+
+    -- yt-dlp by default, can use youtube-dl too but yt-dlp seems to be faster
+    audio_downloader = 'yt-dlp',
+
+    -- arguments to pass to downloader, search query is always appended to be last
+    downloader_arguments = {
+
+        '-x',
+        '-o %(title)s.%(ext)s'
+
+    },
+
+    -- arguments to pass to downloader when fetching media title
+    downloader_title_arguments = {
+
+        '--get-title',
+        '--simulate'
+
+    },
 
     error_color = '\27[1;31m%s\27[0m',
     warn_color = '\27[1;33m%s\27[0m',
@@ -39,11 +62,17 @@ Config = {
 
         playlist = 'playlist',
         lists = 'playlist',
+        l = 'playlist',
 
         song = 'audio',
         music = 'audio',
         sound = 'audio',
-        audio = 'audo',
+        audio = 'audio',
+
+        p = 'playback',
+        playback = 'playback',
+        play = 'playback',
+        player = 'playback',
 
     },
 
@@ -52,7 +81,7 @@ Config = {
         {name = 'help', tip = [[Shows this command.]]},
         {name = 'exit', tip = [[Exits the prompt, if you're in one.
         
-        --silent: no goodbye message :c
+        -s: no goodbye message :c
 
         ]]},
 
@@ -62,7 +91,7 @@ Config = {
 
                 Makes a new playlist with a name. 
                 
-                --force: ignores things like duplication checks and writes anyway. 
+                -f: ignores things like duplication checks and writes anyway. 
                             
         remove <NAME> :
 
@@ -81,7 +110,9 @@ Config = {
                 Downloads audio and adds it to a playlist. 
                 This can be fetched either through a URL, or a search query.
 
-                --force: ignores things like playlist existing checks and makes one if needed, etc. 
+                -f: ignores things like playlist existing checks and makes one if needed, etc.
+                --genre: unused, but you can tag your audio with genres to help make identification easier
+                --searcher: lets you pick the query prefix for downloading, "ytsearch:" by default. 
                             
         remove <NAME> <PLAYLIST_NAME> :
 
