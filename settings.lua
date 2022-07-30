@@ -111,6 +111,8 @@ Config = {
 
                 Removes a playlist by name
 
+                <NAME> can be fuzzy searched if no exact match is found.
+
         list :
 
                 Lists all your playlists.
@@ -124,6 +126,8 @@ Config = {
                 Downloads audio and adds it to a playlist. 
                 This can be fetched either through a URL, or a search query.
 
+                <PLAYLIST_NAME> can be fuzzy searched if no exact match is found,
+
                 -f: ignores things like playlist existing checks and makes one if needed, etc.
                 --playlist: specify the playlist to use, incase you want to download multiple audios'
                 --genre: unused, but you can tag your audio with genres to help make identification easier
@@ -133,7 +137,7 @@ Config = {
 
                 Removes audio from a playlist by name.
     
-                <NAME> will be fuzzy searched inside the <PLAYLIST_NAME>,
+                <NAME> can be fuzzy searched if no exact match is found,
                 if you don't specify a playlist, it'll look through all of them for the most similar song.
 
         list:

@@ -2,6 +2,7 @@ local Module = {}
 local SubCommands = {}
 
 local Prompt = require('prompt') {}
+local Fuzzy = require('fuzzy')
 local Config = require('config')
 local AudioConfig = require('audioConfig')
 
@@ -39,7 +40,7 @@ end
 
 function SubCommands.delete(Arguments, Flags)
     local PlaylistName = Arguments[3]
-    local Playlist = Playlists[PlaylistName]
+    local Playlist = Fuzzy.getPlaylist(PlaylistName)
 
     if not Playlist then
         print(Config.warnify(playlist_cant_delete):format(PlaylistName))

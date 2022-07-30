@@ -94,7 +94,7 @@ function SubCommands.add(Arguments, Flags)
     local PlaylistArgument = Arguments[4]
 
     local PlaylistName = PlaylistArgument or Flags['--playlist']
-    local Playlist = Fuzzy.get(PlaylistName)
+    local Playlist = Fuzzy.getPlaylist(PlaylistName)
 
     if not Playlist then
         if Flags['-f'] then
