@@ -1,7 +1,6 @@
 local Module = {}
 
 local Playlists = require('audioConfig').playlists
-local Config = require('config')
 
 local audio_search_failed = [[Audio search for "%s" turned up no result.]]
 
@@ -41,17 +40,26 @@ function Module.getPlaylist(PlaylistName)
 end
 
 function Module.getAudio(AudioName, PlaylistName)
-    local FoundPlaylist = Playlists[PlaylistName]
+    local ExactPlaylist = Playlists[PlaylistName]
 
     local BestDistance = 0
     local BestAudio
 
-    if PlaylistName and not FoundPlaylist then
-        FoundPlaylist = Module.getPlaylist(PlaylistName)
+    if PlaylistName and not ExactPlaylist then
+        ExactPlaylist = Module.getPlaylist(PlaylistName)
     end
 
     local function GetBestAudio(Playlist)
-        for _, Audio in ipairs(Playlist.audios) do
+        local Audios = Playlist.audios
+        local ExactAudio = Audios[AudioName]
+
+        if ExactAudio then
+            BestAudio = ExactAudio
+
+            return
+        end
+
+        for _, Audio in ipairs(Audios) do
             local NewBest = IsBest(BestDistance, Audio.name, AudioName)
 
             if NewBest then
@@ -62,8 +70,8 @@ function Module.getAudio(AudioName, PlaylistName)
         end
     end
 
-    if FoundPlaylist then
-        GetBestAudio(FoundPlaylist)
+    if ExactPlaylist then
+        GetBestAudio(ExactPlaylist)
     else
         for _, Playlist in pairs(Playlists) do
             GetBestAudio(Playlist)
