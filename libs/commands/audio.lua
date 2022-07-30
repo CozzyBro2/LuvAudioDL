@@ -7,6 +7,7 @@ local Split = require('split')
 
 local Config = require('config')
 local AudioConfig = require('audioConfig')
+local Fuzzy = require('fuzzy')
 local PlaylistManager = require('./playlist')
 
 local Playlists = AudioConfig.playlists
@@ -16,6 +17,7 @@ local download_failed = "Couldn't download using audio downloader, stderr: \n%s"
 local playlist_not_exist = [[Playlist "%s" does not exist, can't add to it. (use -f to override)]]
 
 local finished_feedback = 'Finished in %.2fs'
+local title_feedback = [[Fetched title "%s" successfully]]
 local download_feedback = 'Downloading "%s"'
 local searcher_format = '%s:%s'
 
@@ -81,16 +83,18 @@ local function getTitle(Query)
     local Chunk = Child.stdout.read()
     local Output = Split(Chunk)
 
-    print('Fetched title successfully')
+    local Title = Output[1]
+    print(Config.boldify(title_feedback:format(Title)))
 
-    return Output[1]
+    return Title
 end
 
 function SubCommands.add(Arguments, Flags)
     local Query = Arguments[3]
-    local PlaylistName = Arguments[4]
+    local PlaylistArgument = Arguments[4]
 
-    local Playlist = Playlists[PlaylistName]
+    local PlaylistName = PlaylistArgument or Flags['--playlist']
+    local Playlist = Fuzzy.get(PlaylistName)
 
     if not Playlist then
         if Flags['-f'] then

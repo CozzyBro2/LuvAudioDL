@@ -8,6 +8,7 @@ Config = {
     default_config_path = 'defaults/default_audio_config.json',
     audio_storage_path = 'audio',
 
+    -- prefix for the search query if it doesn't look like a url, e.g: 'ytsearch:crowntheempirememories'
     -- yt-dlp can support a few of these, visit it's docs for a list
     default_searcher = 'ytsearch',
 
@@ -18,6 +19,8 @@ Config = {
     downloader_arguments = {
 
         '-x',
+        '--sponsorblock-remove',
+        'all',
         '-o %(title)s.%(ext)s'
 
     },
@@ -27,6 +30,17 @@ Config = {
 
         '--get-title',
         '--simulate'
+
+    },
+
+    -- audio player to use to play your audio
+    -- vlc by default, i recommend cvlc but most people won't have that
+    audio_backend = 'vlc',
+
+    -- arguments to pass to backend, audio file is always appended to be last
+    audio_backend_arguments = {
+
+        '--play-and-exit',
 
     },
 
@@ -111,6 +125,7 @@ Config = {
                 This can be fetched either through a URL, or a search query.
 
                 -f: ignores things like playlist existing checks and makes one if needed, etc.
+                --playlist: specify the playlist to use, incase you want to download multiple audios'
                 --genre: unused, but you can tag your audio with genres to help make identification easier
                 --searcher: lets you pick the query prefix for downloading, "ytsearch:" by default. 
                             
@@ -118,8 +133,8 @@ Config = {
 
                 Removes audio from a playlist by name.
     
-                <NAME> can be roughly accurate, 
-                i.e using "travysicko" will fuzzy to "travis scott - sicko mode", even if you had other travis songs.  
+                <NAME> will be fuzzy searched inside the <PLAYLIST_NAME>,
+                if you don't specify a playlist, it'll look through all of them for the most similar song.
 
         list:
 
